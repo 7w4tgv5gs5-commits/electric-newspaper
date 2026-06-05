@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Electric Newspaper – Wikipedia</title>
+<style>
+/* Wikipedia-faithful styling */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, 'Linux Libertine', Georgia, Times, serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #202122;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- CHROME ---- */
+#site-header {
+  background: #fff;
+  border-bottom: 1px solid #a2a9b1;
+  padding: 4px 20px;
+  font-family: sans-serif;
+  font-size: 12px;
+  color: #54595d;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+#site-header .wp-logo {
+  font-size: 18px;
+  font-weight: bold;
+  color: #202122;
+  text-decoration: none;
+  font-family: 'Linux Libertine', Georgia, serif;
+  font-style: italic;
+}
+#site-header .wp-logo span { font-style: normal; font-size: 11px; color: #54595d; margin-left: 4px; }
+
+/* ---- LAYOUT ---- */
+#content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 0;
+  min-height: calc(100vh - 36px);
+}
+
+#sidebar {
+  border-right: 1px solid #a2a9b1;
+  padding: 16px 10px;
+  font-family: sans-serif;
+  font-size: 12px;
+}
+.sidebar-section { margin-bottom: 16px; }
+.sidebar-section h4 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #54595d;
+  border-bottom: 1px solid #a2a9b1;
+  padding-bottom: 3px;
+  margin: 0 0 6px;
+  font-weight: normal;
+}
+.sidebar-section ul { margin: 0; padding: 0 0 0 12px; }
+.sidebar-section li { margin: 3px 0; }
+.sidebar-section a { color: #3366cc; text-decoration: none; }
+.sidebar-section a:hover { text-decoration: underline; }
+
+#article {
+  padding: 20px 24px 40px;
+  max-width: 860px;
+}
+
+/* ---- ARTICLE TITLE ---- */
+#firstHeading {
+  font-family: 'Linux Libertine', Georgia, 'Times New Roman', serif;
+  font-size: 28px;
+  font-weight: normal;
+  border-bottom: 1px solid #a2a9b1;
+  padding-bottom: 4px;
+  margin: 0 0 12px;
+  line-height: 1.2;
+}
+.page-subtitle {
+  font-family: sans-serif;
+  font-size: 12px;
+  color: #54595d;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+/* ---- INFOBOX ---- */
+.infobox {
+  float: right;
+  clear: right;
+  margin: 0 0 16px 24px;
+  border: 1px solid #a2a9b1;
+  background: #f8f9fa;
+  font-size: 13px;
+  line-height: 1.5;
+  width: 280px;
+}
+.infobox-title {
+  background: #cee0f2;
+  text-align: center;
+  font-weight: bold;
+  padding: 5px 8px;
+  font-size: 13px;
+  border-bottom: 1px solid #a2a9b1;
+}
+.infobox-subtitle {
+  text-align: center;
+  font-style: italic;
+  padding: 3px 8px 5px;
+  font-size: 12px;
+  border-bottom: 1px solid #a2a9b1;
+  background: #eaf3fb;
+}
+.infobox table { width: 100%; border-collapse: collapse; }
+.infobox td {
+  padding: 3px 8px;
+  vertical-align: top;
+  border-bottom: 1px solid #eaecf0;
+}
+.infobox td:first-child {
+  font-weight: bold;
+  white-space: nowrap;
+  width: 40%;
+  color: #202122;
+}
+.infobox td:last-child { color: #202122; }
+
+/* ---- TOC ---- */
+#toc {
+  display: inline-block;
+  border: 1px solid #a2a9b1;
+  background: #f8f9fa;
+  padding: 10px 14px;
+  margin: 0 0 16px;
+  font-size: 13px;
+  min-width: 200px;
+}
+#toc h2 {
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 6px;
+  border: none;
+  padding: 0;
+}
+#toc ol { margin: 0; padding-left: 18px; }
+#toc li { margin: 2px 0; }
+#toc a { color: #3366cc; text-decoration: none; }
+#toc a:hover { text-decoration: underline; }
+#toc .toc-number { margin-right: 3px; }
+
+/* ---- BODY TEXT ---- */
+#article p { margin: 0 0 10px; }
+#article a { color: #3366cc; text-decoration: none; }
+#article a:hover { text-decoration: underline; }
+#article a.new { color: #d33; }  /* red link = no article */
+
+/* ---- HEADINGS ---- */
+#article h2 {
+  font-family: 'Linux Libertine', Georgia, serif;
+  font-size: 22px;
+  font-weight: normal;
+  border-bottom: 1px solid #a2a9b1;
+  margin: 24px 0 8px;
+  padding-bottom: 3px;
+}
+#article h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 16px 0 6px;
+}
+#article h4 {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 12px 0 4px;
+}
+
+/* ---- REFERENCES ---- */
+sup.ref {
+  font-size: 10px;
+  line-height: 0;
+}
+sup.ref a {
+  color: #3366cc;
+  text-decoration: none;
+}
+sup.ref a:hover { text-decoration: underline; }
+
+#references {
+  font-size: 12px;
+  column-count: 2;
+  column-gap: 20px;
+}
+#references ol { margin: 0; padding-left: 18px; }
+#references li { margin-bottom: 6px; line-height: 1.4; }
+
+/* ---- CATEGORIES ---- */
+#catlinks {
+  border-top: 1px solid #a2a9b1;
+  margin-top: 24px;
+  padding-top: 8px;
+  font-size: 12px;
+  font-family: sans-serif;
+}
+#catlinks a { color: #3366cc; text-decoration: none; }
+#catlinks a:hover { text-decoration: underline; }
+
+/* ---- HATNOTE / NOTICE ---- */
+.hatnote {
+  font-style: italic;
+  padding: 3px 0 3px 24px;
+  margin-bottom: 10px;
+  color: #54595d;
+  font-size: 13px;
+  border-left: 3px solid #a2a9b1;
+}
+
+/* ---- WIKITABLE ---- */
+.wikitable {
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 12px 0;
+  width: 100%;
+}
+.wikitable th {
+  background: #eaecf0;
+  border: 1px solid #a2a9b1;
+  padding: 4px 8px;
+  text-align: left;
+}
+.wikitable td {
+  border: 1px solid #a2a9b1;
+  padding: 4px 8px;
+  vertical-align: top;
+}
+.wikitable tr:nth-child(even) td { background: #f8f9fa; }
+
+/* ---- CLEARFIX ---- */
+.clearfix::after { content: ""; display: table; clear: both; }
+
+/* ---- FOOTER ---- */
+#footer {
+  border-top: 1px solid #a2a9b1;
+  padding: 12px 24px;
+  font-size: 11px;
+  color: #54595d;
+  font-family: sans-serif;
+  background: #f8f9fa;
+}
+</style>
+</head>
+<body>
+
+<!-- WIKIPEDIA CHROME -->
+<div id="site-header">
+  <span class="wp-logo">Wikipedia<span>The Free Encyclopedia</span></span>
+  <span style="margin-left:auto; color:#54595d;">
+    This is a draft Wikipedia article prepared from archival research, February 1998 source documents, and the restored Electric Newspaper archive (2024).
+  </span>
+</div>
+
+<div id="content-wrapper">
+
+  <!-- SIDEBAR -->
+  <div id="sidebar">
+    <div class="sidebar-section">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Archive entrance</a></li>
+        <li><a href="archive/index.htm">Electric Newspaper</a></li>
+        <li><a href="analysis.html">Byline analysis</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <h4>Tools</h4>
+      <ul>
+        <li><a href="#" class="new">Edit this page</a></li>
+        <li><a href="#references">References</a></li>
+        <li><a href="#catlinks">Categories</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <h4>In other projects</h4>
+      <ul>
+        <li><a href="archive/index.htm">Original archive</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ARTICLE -->
+  <div id="article">
+
+    <h1 id="firstHeading">The Electric Newspaper</h1>
+    <div class="page-subtitle">From Wikipedia, the free encyclopedia (draft)</div>
+
+    <!-- INFOBOX -->
+    <div class="infobox">
+      <div class="infobox-title">The Electric Newspaper</div>
+      <div class="infobox-subtitle">Australia's first independent online daily newspaper</div>
+      <table>
+        <tr><td>Type</td><td>Online daily newspaper</td></tr>
+        <tr><td>Format</td><td>Online only (HTML)</td></tr>
+        <tr><td>Founded</td><td>February 1998</td></tr>
+        <tr><td>Ceased</td><td>31 July 1998</td></tr>
+        <tr><td>Headquarters</td><td>Adelaide, South Australia, Australia</td></tr>
+        <tr><td>Country</td><td>Australia</td></tr>
+        <tr><td>Language</td><td>English</td></tr>
+        <tr><td>Website</td><td><code>www.electric.on.net</code></td></tr>
+        <tr><td>Publisher</td><td><a href="#va">Virtual Artists Pty Ltd</a></td></tr>
+        <tr><td>Editor</td><td><a href="#gout">Hendrik Gout</a></td></tr>
+        <tr><td>Hosting</td><td><a href="#internode">Internode</a></td></tr>
+        <tr><td>ISP sponsors</td><td>Internode; Cobweb Internet Services</td></tr>
+        <tr><td>Articles</td><td>711 (complete archive)</td></tr>
+        <tr><td>Sections</td><td>11</td></tr>
+      </table>
+    </div>
+
+    <!-- LEAD -->
+    <p>
+      <b>The Electric Newspaper</b> was an Australian <a href="https://en.wikipedia.org/wiki/Online_newspaper">online newspaper</a>
+      published in <a href="https://en.wikipedia.org/wiki/Adelaide">Adelaide</a>,
+      <a href="https://en.wikipedia.org/wiki/South_Australia">South Australia</a>,
+      from February to July 1998. Published at the web address
+      <code>www.electric.on.net</code> and hosted on a Unix server provided by Adelaide
+      internet service provider <a href="https://en.wikipedia.org/wiki/Internode_(ISP)">Internode</a>,
+      it was among the first independent, journalist-led online-only daily newspapers in Australia,
+      predating the widespread adoption of the internet by Australian households.
+    </p>
+    <p>
+      Produced by web design studio <a href="#va">Virtual Artists Pty Ltd</a>
+      of <a href="https://en.wikipedia.org/wiki/Rundle_Street,_Adelaide">Rundle Street</a>,
+      Adelaide, and edited by veteran broadcast journalist
+      <a href="#gout">Hendrik Gout</a>, the paper published 711 articles across eleven
+      sections — including news, essays, arts, film reviews, sport, food, and holidays —
+      written by a team of working journalists, academics, politicians, and critics.
+      It operated for seven months before ceasing publication on 31 July 1998.
+    </p>
+    <p>
+      The paper's coverage was focused on <a href="https://en.wikipedia.org/wiki/South_Australia">South Australian</a>
+      affairs, and its seven-month lifespan coincided with one of the most turbulent periods in
+      recent SA political history: the <a href="https://en.wikipedia.org/wiki/Electricity_Trust_of_South_Australia">ETSA</a>
+      privatisation controversy and the parliamentary
+      scandal surrounding Deputy Premier
+      <a href="https://en.wikipedia.org/wiki/Graham_Ingerson">Graham Ingerson</a>.
+      The complete archive was preserved on tape and restored in 2024.
+    </p>
+
+    <!-- TOC -->
+    <div id="toc">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#history"><span class="toc-number">1</span> History</a>
+          <ol>
+            <li><a href="#founding"><span class="toc-number">1.1</span> Founding</a></li>
+            <li><a href="#publication"><span class="toc-number">1.2</span> Publication</a></li>
+            <li><a href="#closure"><span class="toc-number">1.3</span> Closure</a></li>
+          </ol>
+        </li>
+        <li><a href="#content"><span class="toc-number">2</span> Content</a>
+          <ol>
+            <li><a href="#news"><span class="toc-number">2.1</span> News coverage</a></li>
+            <li><a href="#essays"><span class="toc-number">2.2</span> Essays and opinion</a></li>
+            <li><a href="#arts"><span class="toc-number">2.3</span> Arts and reviews</a></li>
+          </ol>
+        </li>
+        <li><a href="#people"><span class="toc-number">3</span> Personnel</a></li>
+        <li><a href="#technical"><span class="toc-number">4</span> Technical production</a></li>
+        <li><a href="#context"><span class="toc-number">5</span> Historical context</a></li>
+        <li><a href="#legacy"><span class="toc-number">6</span> Legacy and archive</a></li>
+        <li><a href="#references"><span class="toc-number">7</span> References</a></li>
+        <li><a href="#external"><span class="toc-number">8</span> External links</a></li>
+      </ol>
+    </div>
+
+    <!-- SECTION 1: HISTORY -->
+    <h2 id="history">History</h2>
+
+    <h3 id="founding">Founding</h3>
+    <p>
+      The Electric Newspaper was conceived and produced by
+      <a href="#va">Virtual Artists Pty Ltd</a>, a web design studio on
+      <a href="https://en.wikipedia.org/wiki/Rundle_Street,_Adelaide">Rundle Street</a>,
+      Adelaide, which had established itself as one of South Australia's leading
+      commercial web agencies in the mid-1990s. The studio had developed
+      significant technical expertise in web production and had an existing
+      relationship with Adelaide-based internet service provider
+      <a href="https://en.wikipedia.org/wiki/Internode_(ISP)">Internode</a>,
+      which provided server infrastructure and co-sponsorship.
+    </p>
+    <p>
+      The paper launched in early February 1998 under editor Hendrik Gout, a veteran
+      broadcast journalist who had previously served as Executive Producer of the
+      <a href="https://en.wikipedia.org/wiki/7.30_(TV_program)">ABC's 7.30 Report</a>
+      and had covered the
+      <a href="https://en.wikipedia.org/wiki/State_Bank_of_South_Australia">SA State Bank Royal Commission</a>.
+      Describing the paper's staff in an early edition, Gout wrote: <i>"We're a bunch of
+      journalists, production staff (read: web designers), and general all-round bad guys
+      ... We're running a daily newspaper."</i><sup class="ref"><a href="#fn1">[1]</a></sup>
+    </p>
+    <p>
+      The paper's timing coincided with a period of rapid internet uptake in Australia.
+      By 1998, the internet had moved from university and corporate networks to mainstream
+      household use, driven by commercial ISPs such as Adelaide-based Internode, which had
+      been offering public internet services since 1995.<sup class="ref"><a href="#fn2">[2]</a></sup>
+      Existing Australian newspaper websites — including those of major metropolitan dailies
+      — were at this time largely static replicas of their print editions, updated
+      infrequently. The Electric Newspaper was designed from the outset as an online-first
+      publication with no print equivalent.
+    </p>
+
+    <h3 id="publication">Publication</h3>
+    <p>
+      The paper published multiple articles per day, six days a week, across eleven
+      sections: News, Essays, Arts, Films, Books, Food &amp; Drink, Sport, Holidays,
+      Fringe, Letters, and The Colonel (a regular column). Over its seven-month run it
+      published 711 articles. The news section alone comprised 314 articles.
+    </p>
+    <p>
+      The paper's launch in February 1998 coincided with the
+      <a href="https://en.wikipedia.org/wiki/Adelaide_Festival">Adelaide Festival</a>
+      and <a href="https://en.wikipedia.org/wiki/Adelaide_Fringe">Adelaide Fringe Festival</a>,
+      both of which received intensive coverage. Arts and drama journalist Elaine Moore
+      filed multiple Fringe reviews per week throughout March 1998.
+    </p>
+    <p>
+      The most prominent running story of the paper's existence was the
+      <a href="https://en.wikipedia.org/wiki/Electricity_Trust_of_South_Australia">ETSA</a>
+      privatisation controversy. When Premier
+      <a href="https://en.wikipedia.org/wiki/John_Olsen_(politician)">John Olsen</a>
+      announced on 17 February 1998 that his Liberal government would sell ETSA —
+      reversing a specific election promise — the announcement triggered a political
+      crisis that dominated South Australian public life for months.
+      ETSA is mentioned in 54 news articles and 30 essays published by the paper;
+      Premier Olsen appears in 83 of the paper's 314 news articles.
+    </p>
+
+    <h3 id="closure">Closure</h3>
+    <p>
+      The Electric Newspaper published its final edition on 31 July 1998, seven months
+      after launch. The closing note in the paper's news index read: <i>"No time to say
+      hello, see ya! The Electric Newspaper is seven months old this week. It's now been
+      seven months of hard work."</i><sup class="ref"><a href="#fn3">[3]</a></sup>
+      No explanation for the cessation of publication was given in the archive.
+      The paper's Unix server at Internode was subsequently archived as a
+      <a href="https://en.wikipedia.org/wiki/Tar_(computing)">tar file</a> and preserved.
+    </p>
+
+    <!-- SECTION 2: CONTENT -->
+    <h2 id="content">Content</h2>
+
+    <h3 id="news">News coverage</h3>
+    <p>
+      The news section was the paper's largest and most frequently updated, publishing
+      314 articles over seven months. Coverage focused almost exclusively on South
+      Australian affairs: state parliament, the courts, local government, and economic
+      policy. Chief reporter Hendrik Gout authored more than 36 news articles under his
+      byline; Garry Quill filed political dispatches from
+      <a href="https://en.wikipedia.org/wiki/Parliament_House,_Canberra">Parliament House,
+      Canberra</a>; and reporter Krista Eleftheriou covered tourism, transport, and
+      regulatory matters.
+    </p>
+
+    <h4>The ETSA privatisation</h4>
+    <p>
+      The proposed privatisation of the
+      <a href="https://en.wikipedia.org/wiki/Electricity_Trust_of_South_Australia">Electricity
+      Trust of South Australia (ETSA)</a> was the defining story of the paper's run.
+      The Olsen Liberal government's February 1998 announcement reversed a commitment made
+      during the 1997 state election campaign. The paper covered the subsequent legislative
+      battles extensively, including the role of crossbenchers such as
+      <a href="https://en.wikipedia.org/wiki/Nick_Xenophon">Nick Xenophon</a>, who had
+      been elected to the Legislative Council in 1997 as an independent No Pokies MLC —
+      the first independent elected to the LC in sixty years — and whose support the
+      government required to pass the ETSA bill.
+    </p>
+
+    <h4>The Ingerson affair</h4>
+    <p>
+      Deputy Premier
+      <a href="https://en.wikipedia.org/wiki/Graham_Ingerson">Graham Ingerson</a> was
+      alleged to have telephoned the chairman of the SA Thoroughbred Racing Authority to
+      influence an executive appointment, then denied having done so before an estimates
+      committee. The Speaker of the House ruled that a prima facie case of misleading
+      parliament existed, and a parliamentary privileges committee — the first in
+      South Australian parliamentary history — was convened. The committee had powers
+      equivalent to a royal commission. The Electric Newspaper filed 35 articles on the
+      affair, with Gout's coverage characterised by access to unnamed government sources.
+      The paper reported on Liberal ministers privately expressing doubt that Ingerson
+      could survive in his role, under headlines including <i>"Olsen sticks by Ingo like
+      doggydoo sticks to shoes"</i> and <i>"Dead but not
+      buried."</i><sup class="ref"><a href="#fn4">[4]</a></sup>
+    </p>
+
+    <h3 id="essays">Essays and opinion</h3>
+    <p>
+      The Essays section was distinctive in that it regularly published signed opinion
+      pieces by sitting members of the South Australian Parliament, writing directly under
+      their own bylines rather than through press releases or media intermediaries. Regular
+      essay contributors included:
+    </p>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Sandra_Kanck">Sandra Kanck</a> MLC (SA Democrats), 16 essays — on voluntary euthanasia, gaming machine policy, environmental matters, and the Riverlink development proposal;</li>
+      <li>Legh Davis, policy analyst, 19 essays — the paper's most prolific contributor overall, covering SA Labor Party politics, the state budget, and ETSA;</li>
+      <li>John Spoehr, 7 essays — economic and social policy;</li>
+      <li><a href="https://en.wikipedia.org/wiki/John_Rau">John Rau</a> LLB (SA Labor), 5 essays — later SA Attorney-General and Deputy Premier; described by Gout as the paper's in-house legal counsel;</li>
+      <li><a href="https://en.wikipedia.org/wiki/Nick_Xenophon">Nick Xenophon</a> MLC (No Pokies), essays on gambling policy;</li>
+      <li><a href="https://en.wikipedia.org/wiki/Patrick_Conlon">Patrick Conlon</a> MHA (SA Labor), 3 essays.</li>
+    </ul>
+    <p>
+      Gout described the essays section's purpose as ensuring readers understood what
+      elected representatives were thinking: <i>"They vote on legislation. It's time we all
+      knew more about what individual Members of Parliament were thinking, and why they do
+      what they do."</i><sup class="ref"><a href="#fn1">[1]</a></sup>
+    </p>
+
+    <h3 id="arts">Arts and reviews</h3>
+    <p>
+      The paper's non-news sections each had a single primary contributor, giving each
+      section a consistent authorial voice across the full seven months:
+    </p>
+    <table class="wikitable">
+      <tr><th>Section</th><th>Primary contributor</th><th>Articles</th></tr>
+      <tr><td>Films</td><td>David Bradley</td><td>45</td></tr>
+      <tr><td>Books</td><td>Denise Wels</td><td>40</td></tr>
+      <tr><td>Arts</td><td>Dianne Gall</td><td>38</td></tr>
+      <tr><td>Fringe</td><td>Elaine Moore</td><td>26</td></tr>
+      <tr><td>Food &amp; Drink</td><td>Adrienne Eccles</td><td>19</td></tr>
+      <tr><td>Holidays</td><td>George Aldridge</td><td>17</td></tr>
+      <tr><td>Sport</td><td>Phil Owens / "Piston Stoned"</td><td>96</td></tr>
+    </table>
+    <p>
+      Sport editor Phil Owens wrote rugby league coverage under his own name and motorsport
+      coverage — principally the 500cc World Championship and Formula One — under the
+      pseudonym "Piston Stoned." His rugby league coverage documented the
+      <a href="https://en.wikipedia.org/wiki/Adelaide_Rams">Adelaide Rams</a>'
+      second and final NRL season in 1998, during which the team finished seventeenth,
+      average home attendances fell by more than half, and the club was wound up at
+      season's end — the only South Australian club ever to compete at the top level of
+      Australian rugby league.<sup class="ref"><a href="#fn5">[5]</a></sup>
+    </p>
+    <p>
+      Cartoonist and travel writer George Aldridge served dual roles: drawing cartoons for
+      the paper and filing dispatches from overseas as what the paper billed as its
+      <i>"uniquely own foreign correspondent."</i> His Holidays column included a "Postcard
+      from Ireland" series.
+    </p>
+
+    <!-- SECTION 3: PEOPLE -->
+    <h2 id="people">Personnel</h2>
+    <p>
+      The paper's masthead listed the following staff and regular contributors,
+      as recorded on the Team page of the archive:<sup class="ref"><a href="#fn6">[6]</a></sup>
+    </p>
+    <table class="wikitable">
+      <tr><th>Name</th><th>Role</th></tr>
+      <tr><td><b>Hendrik Gout</b></td><td>Editor and chief reporter</td></tr>
+      <tr><td>Garry Quill</td><td>Canberra correspondent</td></tr>
+      <tr><td>Krista Eleftheriou</td><td>Reporter</td></tr>
+      <tr><td>Chris Warren</td><td>Reporter (environment)</td></tr>
+      <tr><td>Virginia Bosley</td><td>Reporter</td></tr>
+      <tr><td>Andrea Stylianou</td><td>Reporter</td></tr>
+      <tr><td>Legh Davis</td><td>Essays (policy analysis)</td></tr>
+      <tr><td><a href="https://en.wikipedia.org/wiki/Sandra_Kanck">Sandra Kanck</a> MLC</td><td>Essays contributor</td></tr>
+      <tr><td>John Spoehr</td><td>Essays contributor</td></tr>
+      <tr><td><a href="https://en.wikipedia.org/wiki/John_Rau">John Rau</a></td><td>Essays contributor; legal counsel</td></tr>
+      <tr><td><a href="https://en.wikipedia.org/wiki/Nick_Xenophon">Nick Xenophon</a> MLC</td><td>Essays contributor</td></tr>
+      <tr><td><a href="https://en.wikipedia.org/wiki/Patrick_Conlon">Patrick Conlon</a></td><td>Essays contributor</td></tr>
+      <tr><td>David Bradley</td><td>Film critic</td></tr>
+      <tr><td>Denise Wels</td><td>Book reviewer</td></tr>
+      <tr><td>Dianne Gall</td><td>Arts reviewer</td></tr>
+      <tr><td>Elaine Moore</td><td>Fringe / arts reviewer</td></tr>
+      <tr><td>Ray Thomas</td><td>Arts reviewer; News Digest compiler</td></tr>
+      <tr><td>Adrienne Eccles</td><td>Food and drink</td></tr>
+      <tr><td>Phil Owens</td><td>Sport editor</td></tr>
+      <tr><td>George Aldridge</td><td>Cartoonist; Holidays correspondent</td></tr>
+      <tr><td>Toni Jupe</td><td>Journalist (children's and youth affairs)</td></tr>
+      <tr><td>Amanda Lynch</td><td>Journalist</td></tr>
+      <tr><td>Simon Royal</td><td>Journalist and broadcaster</td></tr>
+      <tr><td>Neil Wiese</td><td>Journalist and foreign correspondent</td></tr>
+      <tr><td>Julie Ritchie</td><td>Editorial staff</td></tr>
+      <tr><td><b>Andy Petrucevics ("AndyPC")</b></td><td>Design and illustration</td></tr>
+      <tr><td><b>Chris Joyner</b></td><td>Web production</td></tr>
+      <tr><td><b>Ben Moretti</b></td><td>Web production</td></tr>
+      <tr><td>Victoria White</td><td>Operations</td></tr>
+      <tr><td>Tatiania Liemareff</td><td>Editorial assistant</td></tr>
+      <tr><td>Adrian "Killer" Bruer</td><td>Motorcycle courier</td></tr>
+    </table>
+
+    <!-- SECTION 4: TECHNICAL -->
+    <h2 id="technical">Technical production</h2>
+    <p>
+      All pages of The Electric Newspaper were hand-coded in HTML by Chris Joyner and
+      Ben Moretti of Virtual Artists. The paper used a two-column table layout —
+      standard for the period — with a 140-pixel left column containing graphical
+      navigation buttons and a 460-pixel right column for article content.
+    </p>
+    <p>
+      Navigation used a
+      <a href="https://en.wikipedia.org/wiki/Rollover_(web_design)">rollover button</a>
+      system — one of the more sophisticated interactive features available in 1998 —
+      implemented in JavaScript by Dave Sag and Mark King of Virtual Artists in July 1997.
+      The script, which swapped GIF images on mouse hover events using the
+      <code>document.images</code> object, was credited in its source code as follows:
+      <i>"This code was written by Dave Sag (dave@va.com.au) July 1997 ... based on
+      Mark King's original waxon/off script."</i><sup class="ref"><a href="#fn7">[7]</a></sup>
+    </p>
+    <p>
+      The paper was hosted on a Unix server operated by
+      <a href="https://en.wikipedia.org/wiki/Internode_(ISP)">Internode</a>
+      at the domain <code>electric.on.net</code>, reflecting Internode's
+      <code>.on.net</code> domain namespace. Internode and Cobweb Internet Services
+      were acknowledged as sponsors on every page of the paper. Design and visual identity,
+      including the masthead logo, was created by Andy Petrucevics.
+    </p>
+    <p>
+      The paper's section header graphics were stored in a dedicated
+      <code>HEADERS/</code> directory, navigation buttons in a <code>BUTTONS/</code>
+      directory, and story photographs in dated subdirectories within each section folder.
+      Story photography was sourced from a range of contributors; editorial illustrations
+      were stored in an <code>ILLUSTRA/</code> directory.
+    </p>
+
+    <!-- SECTION 5: CONTEXT -->
+    <h2 id="context">Historical context</h2>
+    <p>
+      In 1998, the Australian internet was undergoing rapid expansion.
+      <a href="https://en.wikipedia.org/wiki/AARNet">AARNet</a> had allowed commercial
+      ISPs to connect since 1994; by 1997–98 household internet penetration was
+      growing quickly. Established newspapers —
+      <em><a href="https://en.wikipedia.org/wiki/The_Advertiser_(Adelaide)">The Advertiser</a></em>
+      in Adelaide and the metropolitan dailies in other states — had online presences,
+      but these were extensions of their print operations, not independent digital
+      publications. The ABC had launched
+      <a href="https://en.wikipedia.org/wiki/ABC_Online">ABC Online</a>, which recorded
+      over two million weekly hits during the 1998 federal election
+      campaign.<sup class="ref"><a href="#fn8">[8]</a></sup>
+    </p>
+    <p>
+      <a href="https://en.wikipedia.org/wiki/Internode_(ISP)">Internode</a>, one of the
+      paper's infrastructure sponsors, had been founded in Adelaide in 1991 by
+      Simon Hackett and Robyn Taylor, initially as a software company before pivoting to
+      become an ISP in 1994–95. It was among the first commercial ISPs in South Australia
+      and would later become one of Australia's largest.<sup class="ref"><a href="#fn9">[9]</a></sup>
+    </p>
+    <p>
+      South Australia in early 1998 was in political turmoil. The Olsen Liberal government,
+      re-elected in 1997 partly on a promise not to privatise ETSA, reversed that
+      position within months. At the same time, a new generation of crossbench MLCs —
+      including Nick Xenophon (No Pokies) and the three-seat Australian Democrats bloc
+      led by Sandra Kanck — held the balance of power in the Legislative Council,
+      making every significant legislative vote uncertain. The Electric Newspaper's
+      news section served as a real-time chronicle of this period.
+    </p>
+
+    <!-- SECTION 6: LEGACY -->
+    <h2 id="legacy">Legacy and archive</h2>
+    <p>
+      Following the paper's closure in July 1998, the content was preserved on Internode's
+      Unix server as a tar archive. The complete file set — 1,711 files comprising 941
+      HTML article pages, 558 photographs, 205 GIF graphics, 5 video files, and 2 PDFs —
+      remained dormant until 2024, when it was extracted and restored.
+    </p>
+    <p>
+      The restoration process revealed that the tar archive had truncated all filenames
+      to eight characters, rendering every image reference in all 711 articles broken.
+      Systematic analysis recovered 92% of broken references by mapping truncated
+      filenames back to their originals. A further 269 absolute image URLs pointing
+      to the defunct <code>www.electric.on.net</code> domain were rewritten as relative
+      paths. The original article HTML was not modified; changes were limited to image
+      path corrections, navigation link fixes, and the disabling — with full source
+      preservation in code comments — of the 1997-era rollover button JavaScript, which
+      was incompatible with contemporary browsers.
+    </p>
+    <p>
+      The restored archive is being prepared for submission to
+      <a href="https://en.wikipedia.org/wiki/PANDORA_Archive">PANDORA</a>, the National
+      Library of Australia's archive of online Australian publications, and to
+      <a href="https://en.wikipedia.org/wiki/Trove_(database)">Trove</a>.
+    </p>
+
+    <!-- REFERENCES -->
+    <h2 id="references">References</h2>
+    <div id="references">
+      <ol>
+        <li id="fn1">Gout, Hendrik. "Who are we?" <em>The Electric Newspaper</em>, 14 April 1998. Archived at <code>electric_newspaper/archive/NEWS/00.HTM</code>.</li>
+        <li id="fn2">Wikipedia contributors. "Internode (ISP)." <em>Wikipedia, The Free Encyclopedia</em>. Retrieved 2024.</li>
+        <li id="fn3">The Electric Newspaper News Index. "No time to say hello, see ya!" 31 July 1998. Archived at <code>electric_newspaper/archive/NEWS/INDEX.HTM</code>.</li>
+        <li id="fn4">Gout, Hendrik. "Olsen sticks by Ingo like doggydoo sticks to shoes." <em>The Electric Newspaper</em>, 31 July 1998; and "Dead but not buried," 3 July 1998. Both archived in <code>electric_newspaper/archive/NEWS/</code>.</li>
+        <li id="fn5">Wikipedia contributors. "Adelaide Rams." <em>Wikipedia, The Free Encyclopedia</em>; "1998 Adelaide Rams season." Retrieved 2024.</li>
+        <li id="fn6">The Electric Newspaper. Team page. <em>The Electric Newspaper</em>, 1998. Archived at <code>electric_newspaper/archive/TEAM/INDEX.HTM</code>.</li>
+        <li id="fn7">Virtual Artists Pty Ltd. JavaScript rollover source, embedded in all Electric Newspaper article pages, 1997–98. Comment attributed to Dave Sag (dave@va.com.au) and Mark King (mark.king@va.com.au).</li>
+        <li id="fn8">ADM+S Centre. "30 years of the web down under: how Australians made the early internet their own." <em>The Conversation</em>, 2023.</li>
+        <li id="fn9">Wikipedia contributors. "Simon Hackett." <em>Wikipedia, The Free Encyclopedia</em>. Retrieved 2024; Internode. "Our History." <code>internode.on.net/about/our_history</code>.</li>
+      </ol>
+    </div>
+
+    <!-- EXTERNAL LINKS -->
+    <h2 id="external">External links</h2>
+    <ul>
+      <li><a href="archive/index.htm">The Electric Newspaper — restored archive</a></li>
+      <li><a href="index.html">Electric Newspaper Archive — entrance and history</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Internode_(ISP)">Internode (ISP) — Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Electricity_Trust_of_South_Australia">Electricity Trust of South Australia — Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Adelaide_Rams">Adelaide Rams — Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Nick_Xenophon">Nick Xenophon — Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Sandra_Kanck">Sandra Kanck — Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/John_Rau">John Rau — Wikipedia</a></li>
+    </ul>
+
+    <!-- CATEGORIES -->
+    <div id="catlinks">
+      <b>Categories:</b>
+      <a href="#" class="new">Online newspapers</a> ·
+      <a href="#" class="new">Australian newspapers</a> ·
+      <a href="#" class="new">South Australian media</a> ·
+      <a href="#" class="new">Adelaide media</a> ·
+      <a href="#" class="new">1998 establishments in Australia</a> ·
+      <a href="#" class="new">1998 disestablishments in Australia</a> ·
+      <a href="#" class="new">Internet in Australia</a> ·
+      <a href="#" class="new">History of the internet</a> ·
+      <a href="#" class="new">Internode (ISP)</a>
+    </div>
+
+  </div><!-- /article -->
+</div><!-- /content-wrapper -->
+
+<div id="footer">
+  Draft Wikipedia article prepared from archival sources, 2024. Content based on the restored
+  Electric Newspaper archive (1998) and publicly available reference sources.
+  This page is not hosted on Wikipedia. &nbsp;·&nbsp;
+  <a href="index.html">Return to archive entrance</a>
+</div>
+
+</body>
+</html>
