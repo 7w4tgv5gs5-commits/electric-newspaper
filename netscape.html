@@ -1,0 +1,634 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>The Electric Newspaper - Netscape</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<STYLE TYPE="text/css">
+/* ============================================================
+   NETSCAPE NAVIGATOR 4.x CHROME SIMULATION
+   Authentic Windows 95/98 look for The Electric Newspaper archive
+   ============================================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+BODY {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  background: #c0c0c0;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+/* ---- WIN95 3D EFFECTS ---- */
+/* raised = light top-left, dark bottom-right */
+.raised {
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+}
+/* sunken = dark top-left, light bottom-right */
+.sunken {
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+/* thin raised */
+.raised-thin {
+  border: 1px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+/* ---- MENU BAR ---- */
+#menubar {
+  background: #c0c0c0;
+  border-bottom: 1px solid #808080;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.menu-item {
+  padding: 2px 8px;
+  font-size: 12px;
+  cursor: default;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+.menu-item:hover {
+  background: #000080;
+  color: #ffffff;
+}
+.menu-item U { text-decoration: underline; }
+
+/* ---- TOOLBAR AREA ---- */
+#toolbar-area {
+  background: #c0c0c0;
+  border-bottom: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  flex-shrink: 0;
+}
+
+/* ---- NAVIGATION TOOLBAR ---- */
+#navtoolbar {
+  display: flex;
+  align-items: center;
+  height: 42px;
+  padding: 2px 3px 2px 3px;
+  gap: 1px;
+  border-bottom: 1px solid #808080;
+}
+
+.nav-btn {
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  cursor: default;
+  padding: 1px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 46px;
+  height: 36px;
+  gap: 1px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  color: #000000;
+  white-space: nowrap;
+}
+.nav-btn:hover { background: #d0d0d0; }
+.nav-btn:active {
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding-top: 2px;
+  padding-left: 5px;
+}
+.nav-btn.disabled { color: #808080; }
+.nav-btn.disabled .btn-icon { opacity: 0.4; }
+
+.btn-icon {
+  font-size: 17px;
+  line-height: 1;
+  display: block;
+}
+.btn-label {
+  font-size: 9px;
+  line-height: 1;
+}
+
+.toolbar-sep {
+  width: 1px;
+  height: 32px;
+  background: #808080;
+  margin: 0 3px;
+  border-right: 1px solid #ffffff;
+  flex-shrink: 0;
+}
+
+/* ---- NETSCAPE N LOGO ---- */
+#nlogo {
+  margin-left: auto;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(160deg, #0033aa 0%, #0055cc 40%, #002288 100%);
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  flex-shrink: 0;
+}
+
+#nlogo-letter {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  line-height: 1;
+  z-index: 1;
+  position: relative;
+}
+
+/* The meteor/comet animation */
+.meteor {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #ffd700;
+  border-radius: 50%;
+  box-shadow: 0 0 3px 2px rgba(255, 200, 0, 0.8), 0 0 6px 3px rgba(255, 150, 0, 0.4);
+  opacity: 0;
+  top: 3px;
+  right: 3px;
+  animation: none;
+}
+.meteor-trail {
+  position: absolute;
+  width: 1px;
+  height: 6px;
+  background: linear-gradient(to bottom, rgba(255,215,0,0.8), transparent);
+  opacity: 0;
+  top: 4px;
+  right: 4px;
+  transform-origin: top center;
+  transform: rotate(45deg);
+  animation: none;
+}
+
+@keyframes meteor-fall {
+  0%   { top: 2px;  right: 2px;  opacity: 1; }
+  80%  { opacity: 1; }
+  100% { top: 28px; right: 28px; opacity: 0; }
+}
+@keyframes trail-fall {
+  0%   { top: 2px;  right: 2px;  opacity: 0.7; }
+  80%  { opacity: 0.5; }
+  100% { top: 22px; right: 22px; opacity: 0; }
+}
+
+#nlogo.loading .meteor {
+  animation: meteor-fall 0.7s ease-in infinite;
+}
+#nlogo.loading .meteor-trail {
+  animation: trail-fall 0.7s ease-in infinite;
+}
+
+/* ---- LOCATION BAR ---- */
+#locationbar {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  padding: 2px 4px;
+  gap: 4px;
+  border-bottom: 1px solid #808080;
+}
+
+#loc-label {
+  font-size: 11px;
+  white-space: nowrap;
+  min-width: 52px;
+  text-align: right;
+}
+
+#locurl {
+  flex: 1;
+  height: 18px;
+  background: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  padding: 0 3px;
+  outline: none;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  color: #000080;
+  cursor: text;
+  user-select: text;
+}
+
+#whatsrelated {
+  font-size: 10px;
+  padding: 1px 5px;
+  height: 18px;
+  cursor: default;
+  white-space: nowrap;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* ---- PERSONAL TOOLBAR ---- */
+#personaltoolbar {
+  display: flex;
+  align-items: center;
+  height: 22px;
+  padding: 1px 4px;
+  gap: 2px;
+  font-size: 11px;
+}
+
+.ptb-label {
+  color: #000000;
+  white-space: nowrap;
+  margin-right: 2px;
+}
+
+.ptb-btn {
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 0px 6px;
+  cursor: default;
+  font-size: 11px;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.ptb-btn:hover { background: #d0d0d0; }
+.ptb-btn:active { border-color: #808080 #ffffff #ffffff #808080; }
+.ptb-btn.disabled { color: #808080; }
+
+.ptb-sep {
+  color: #808080;
+  font-size: 14px;
+  margin: 0 1px;
+}
+
+/* ---- CONTENT IFRAME ---- */
+#content {
+  flex: 1;
+  width: 100%;
+  border: none;
+  display: block;
+  background: #ffffff;
+  /* sunken inset */
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+}
+
+/* ---- STATUS BAR ---- */
+#statusbar {
+  background: #c0c0c0;
+  border-top: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 3px;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+#status-lock {
+  font-size: 12px;
+  width: 16px;
+  text-align: center;
+  border: 1px solid #808080;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #c0c0c0;
+}
+
+#statustext {
+  flex: 1;
+  border: 1px inset #808080;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 0 3px;
+  height: 16px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#status-progress {
+  width: 100px;
+  height: 14px;
+  border: 1px solid #808080;
+  border-color: #808080 #ffffff #ffffff #808080;
+  background: #c0c0c0;
+  position: relative;
+  overflow: hidden;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #000080;
+  transition: width 0.3s;
+}
+
+#status-zone {
+  border: 1px solid #808080;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 0 6px;
+  height: 16px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+</STYLE>
+</HEAD>
+<BODY>
+
+<!-- ==================== MENU BAR ==================== -->
+<DIV ID="menubar">
+  <SPAN CLASS="menu-item"><U>F</U>ile</SPAN>
+  <SPAN CLASS="menu-item"><U>E</U>dit</SPAN>
+  <SPAN CLASS="menu-item"><U>V</U>iew</SPAN>
+  <SPAN CLASS="menu-item"><U>G</U>o</SPAN>
+  <SPAN CLASS="menu-item"><U>C</U>ommunicator</SPAN>
+  <SPAN CLASS="menu-item"><U>H</U>elp</SPAN>
+</DIV>
+
+<!-- ==================== TOOLBAR AREA ==================== -->
+<DIV ID="toolbar-area">
+
+  <!-- Navigation Toolbar -->
+  <DIV ID="navtoolbar">
+
+    <BUTTON CLASS="nav-btn disabled" ID="btn-back" ONCLICK="goBack()" TITLE="Back">
+      <SPAN CLASS="btn-icon">&#9664;</SPAN>
+      <SPAN CLASS="btn-label">Back</SPAN>
+    </BUTTON>
+
+    <BUTTON CLASS="nav-btn disabled" ID="btn-fwd" ONCLICK="goForward()" TITLE="Forward">
+      <SPAN CLASS="btn-icon">&#9654;</SPAN>
+      <SPAN CLASS="btn-label">Forward</SPAN>
+    </BUTTON>
+
+    <BUTTON CLASS="nav-btn" ONCLICK="doReload()" TITLE="Reload">
+      <SPAN CLASS="btn-icon">&#8635;</SPAN>
+      <SPAN CLASS="btn-label">Reload</SPAN>
+    </BUTTON>
+
+    <BUTTON CLASS="nav-btn" ONCLICK="goHome()" TITLE="Home">
+      <SPAN CLASS="btn-icon">&#8962;</SPAN>
+      <SPAN CLASS="btn-label">Home</SPAN>
+    </BUTTON>
+
+    <SPAN CLASS="toolbar-sep"></SPAN>
+
+    <BUTTON CLASS="nav-btn disabled" TITLE="Search">
+      <SPAN CLASS="btn-icon">&#128269;</SPAN>
+      <SPAN CLASS="btn-label">Search</SPAN>
+    </BUTTON>
+
+    <BUTTON CLASS="nav-btn disabled" TITLE="Guide">
+      <SPAN CLASS="btn-icon">&#128218;</SPAN>
+      <SPAN CLASS="btn-label">Guide</SPAN>
+    </BUTTON>
+
+    <BUTTON CLASS="nav-btn disabled" TITLE="Print">
+      <SPAN CLASS="btn-icon">&#128424;</SPAN>
+      <SPAN CLASS="btn-label">Print</SPAN>
+    </BUTTON>
+
+    <BUTTON CLASS="nav-btn disabled" TITLE="Security">
+      <SPAN CLASS="btn-icon">&#128275;</SPAN>
+      <SPAN CLASS="btn-label">Security</SPAN>
+    </BUTTON>
+
+    <SPAN CLASS="toolbar-sep"></SPAN>
+
+    <BUTTON CLASS="nav-btn" ID="btn-stop" ONCLICK="doStop()" TITLE="Stop">
+      <SPAN CLASS="btn-icon" STYLE="color:#cc0000;">&#10006;</SPAN>
+      <SPAN CLASS="btn-label">Stop</SPAN>
+    </BUTTON>
+
+    <!-- Animated N logo -->
+    <DIV ID="nlogo" CLASS="loading" TITLE="Netscape Navigator 4.0">
+      <DIV CLASS="meteor-trail"></DIV>
+      <DIV CLASS="meteor"></DIV>
+      <SPAN ID="nlogo-letter">N</SPAN>
+    </DIV>
+
+  </DIV><!-- /navtoolbar -->
+
+  <!-- Location Toolbar -->
+  <DIV ID="locationbar">
+    <SPAN ID="loc-label">Location:</SPAN>
+    <INPUT TYPE="text" ID="locurl" VALUE="http://www.electric.on.net/"
+      ONKEYDOWN="if(event.key==='Enter'){navigate(this.value);this.blur();}">
+    <SPAN ID="whatsrelated">What&#39;s Related &#9660;</SPAN>
+  </DIV>
+
+  <!-- Personal Toolbar -->
+  <DIV ID="personaltoolbar">
+    <SPAN CLASS="ptb-label">Bookmarks &nbsp;&#9474;</SPAN>
+    <BUTTON CLASS="ptb-btn" ONCLICK="goHome()">&#9889; The Electric Newspaper</BUTTON>
+    <SPAN CLASS="ptb-sep">&#9474;</SPAN>
+    <BUTTON CLASS="ptb-btn disabled">AltaVista</BUTTON>
+    <SPAN CLASS="ptb-sep">&#9474;</SPAN>
+    <BUTTON CLASS="ptb-btn disabled">Yahoo!</BUTTON>
+    <SPAN CLASS="ptb-sep">&#9474;</SPAN>
+    <BUTTON CLASS="ptb-btn disabled">Excite</BUTTON>
+    <SPAN CLASS="ptb-sep">&#9474;</SPAN>
+    <BUTTON CLASS="ptb-btn disabled">HotBot</BUTTON>
+  </DIV>
+
+</DIV><!-- /toolbar-area -->
+
+<!-- ==================== CONTENT IFRAME ==================== -->
+<IFRAME ID="content" SRC="archive/index.htm"
+  FRAMEBORDER="0" SCROLLING="auto"
+  ONLOAD="frameLoaded()"
+  TITLE="Content">
+</IFRAME>
+
+<!-- ==================== STATUS BAR ==================== -->
+<DIV ID="statusbar">
+  <SPAN ID="status-lock" TITLE="Security: unsecured">&#128275;</SPAN>
+  <SPAN ID="statustext">Contacting host www.electric.on.net...</SPAN>
+  <DIV ID="status-progress"><DIV ID="progress-bar"></DIV></DIV>
+  <SPAN ID="status-zone">Internet zone</SPAN>
+</DIV>
+
+<SCRIPT TYPE="text/javascript">
+<!-- hide from old browsers
+
+var frame    = document.getElementById('content');
+var nlogo    = document.getElementById('nlogo');
+var statusEl = document.getElementById('statustext');
+var locEl    = document.getElementById('locurl');
+var progBar  = document.getElementById('progress-bar');
+var btnBack  = document.getElementById('btn-back');
+var btnFwd   = document.getElementById('btn-fwd');
+
+var histStack = ['archive/index.htm'];
+var histPos   = 0;
+var progTimer = null;
+
+/* ---- Status helpers ---- */
+function setStatus(msg) {
+  statusEl.textContent = msg;
+}
+
+function animateProgress() {
+  var pct = 0;
+  progBar.style.width = '0%';
+  if (progTimer) clearInterval(progTimer);
+  progTimer = setInterval(function() {
+    pct += Math.random() * 18;
+    if (pct > 90) pct = 90;
+    progBar.style.width = pct + '%';
+  }, 120);
+}
+
+function finishProgress() {
+  if (progTimer) clearInterval(progTimer);
+  progBar.style.width = '100%';
+  setTimeout(function() { progBar.style.width = '0%'; }, 400);
+}
+
+/* ---- Loading state ---- */
+function startLoading(url) {
+  nlogo.className = 'loading';
+  setStatus(url ? 'Contacting host ' + url.replace(/^https?:\/\//, '').split('/')[0] + '...' : 'Loading...');
+  animateProgress();
+}
+
+function stopLoading() {
+  nlogo.className = '';
+  finishProgress();
+}
+
+/* ---- Update back/forward buttons ---- */
+function updateNavBtns() {
+  btnBack.className = histPos > 0 ? 'nav-btn' : 'nav-btn disabled';
+  btnFwd.className  = histPos < histStack.length - 1 ? 'nav-btn' : 'nav-btn disabled';
+}
+
+/* ---- Convert real URL to 1998 electric.on.net URL for display ---- */
+function toRetroURL(href) {
+  // strip everything up to and including /archive/ → http://www.electric.on.net/
+  return href.replace(/^.*\/archive\//, 'http://www.electric.on.net/')
+             .replace(/^.*\/electric-newspaper\//, 'http://www.electric.on.net/')
+             .replace(/^.*\/electric_newspaper\//, 'http://www.electric.on.net/');
+}
+
+/* ---- Frame loaded callback ---- */
+function frameLoaded() {
+  stopLoading();
+  try {
+    var title = frame.contentDocument && frame.contentDocument.title
+      ? frame.contentDocument.title : 'The Electric Newspaper';
+    // Clean the title (strip pipe-delimited parts the archive adds)
+    title = title.split('|')[0].trim() || title;
+    document.title = title + ' - Netscape';
+
+    var href = frame.contentWindow.location.href;
+    locEl.value = toRetroURL(href);
+    setStatus('Document: Done');
+
+    // Intercept all link clicks to show "connecting" in status
+    try {
+      var links = frame.contentDocument.getElementsByTagName('a');
+      for (var i = 0; i < links.length; i++) {
+        (function(a) {
+          a.addEventListener('click', function() {
+            var dest = a.href ? toRetroURL(a.href) : '';
+            setStatus('Connecting to ' + (dest || 'site') + '...');
+            nlogo.className = 'loading';
+            animateProgress();
+          });
+        })(links[i]);
+      }
+    } catch(e) {}
+
+  } catch(e) {
+    setStatus('Document: Done');
+  }
+  updateNavBtns();
+}
+
+/* ---- Navigation functions ---- */
+function goHome() {
+  loadUrl('archive/index.htm');
+}
+
+function loadUrl(url) {
+  startLoading(url);
+  // Push to history
+  histStack = histStack.slice(0, histPos + 1);
+  histStack.push(url);
+  histPos++;
+  frame.src = url;
+  updateNavBtns();
+}
+
+function navigate(url) {
+  // If user typed a retro URL, convert back to real path
+  url = url.replace('http://www.electric.on.net/', 'archive/');
+  loadUrl(url);
+}
+
+function goBack() {
+  if (histPos > 0) {
+    histPos--;
+    startLoading();
+    frame.src = histStack[histPos];
+    updateNavBtns();
+  }
+}
+
+function goForward() {
+  if (histPos < histStack.length - 1) {
+    histPos++;
+    startLoading();
+    frame.src = histStack[histPos];
+    updateNavBtns();
+  }
+}
+
+function doReload() {
+  startLoading();
+  try { frame.contentWindow.location.reload(); } catch(e) { frame.src = frame.src; }
+}
+
+function doStop() {
+  try { frame.contentWindow.stop(); } catch(e) {}
+  stopLoading();
+  setStatus('Transfer interrupted');
+}
+
+// end hide from old browsers -->
+</SCRIPT>
+
+</BODY>
+</HTML>

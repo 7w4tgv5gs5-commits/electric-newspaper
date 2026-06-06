@@ -71,6 +71,7 @@ body {
   text-transform: uppercase;
   text-decoration: none;
   font-family: "Times New Roman", serif;
+  cursor: pointer;
 }
 .enter-bar a:hover { text-decoration: underline; }
 
@@ -262,8 +263,23 @@ a:hover { color: #8b0000; }
 
   <!-- ENTER ARCHIVE -->
   <DIV CLASS="enter-bar">
-    <A HREF="archive/index.htm">&rarr;&nbsp; Enter the Archive &nbsp;&larr;</A>
+    <A HREF="archive/index.htm" ONCLICK="return openNetscape()">&rarr;&nbsp; Enter the Archive &nbsp;&larr;</A>
   </DIV>
+
+  <SCRIPT TYPE="text/javascript">
+  function openNetscape() {
+    var w = 800, h = 600;
+    var left = Math.round((screen.width  - w) / 2);
+    var top  = Math.round((screen.height - h) / 2);
+    var opts = 'width=' + w + ',height=' + h +
+               ',left=' + left + ',top=' + top +
+               ',menubar=no,toolbar=no,location=no' +
+               ',status=no,scrollbars=no,resizable=yes';
+    var win = window.open('netscape.html', 'ElectricNewspaper1998', opts);
+    if (win) { win.focus(); return false; }
+    return true; /* fallback: follow the href normally */
+  }
+  </SCRIPT>
 
   <!-- STATS -->
   <DIV CLASS="stats">
@@ -593,6 +609,28 @@ a:hover { color: #8b0000; }
     </DIV>
   </DIV>
 
+  <!-- NETSCAPE EXPERIENCE NOTE -->
+  <DIV CLASS="full" STYLE="background: #f0f4f8; border-left: 4px solid #1a1a1a;">
+    <H2>Viewing the Archive</H2>
+    <H3 STYLE="font-size:16px; font-style:normal; font-weight:bold; margin-bottom:8px;">The 1998 browsing experience</H3>
+    <P>Clicking <STRONG>Enter the Archive</STRONG> opens the paper in a simulated
+    <STRONG>Netscape Navigator 4</STRONG> browser window &mdash; the browser most
+    Australians would have used to read websites in 1998. The window opens at
+    <STRONG>800&times;600 pixels</STRONG>, the standard monitor resolution of the era.</P>
+    <P>The simulation includes the full Netscape chrome: a navigation toolbar with
+    Back, Forward, Reload, Home, and Stop buttons; a location bar that displays the
+    paper's original <CODE>http://www.electric.on.net/</CODE> address as you navigate;
+    a personal toolbar with period-accurate bookmarks (AltaVista, Yahoo!, Excite,
+    HotBot); and a status bar showing connection messages as pages load.
+    The animated <STRONG>N logo</STRONG> in the top-right corner &mdash; a golden
+    meteor streaking across a blue N &mdash; spins while each page loads, exactly
+    as it did in the original browser. The Back and Forward buttons track your
+    navigation through the archive.</P>
+    <P STYLE="margin-bottom:0;">If your browser blocks the pop-up, allow it when prompted
+    &mdash; or browse the archive directly using the section links below.
+    The archive also works perfectly well in any modern browser without the simulation.</P>
+  </DIV>
+
   <!-- RESTORATION NOTE -->
   <DIV CLASS="full">
     <H2>About This Archive</H2>
@@ -610,7 +648,7 @@ a:hover { color: #8b0000; }
 
   <!-- FOOTER -->
   <DIV CLASS="footer">
-    <A HREF="archive/index.htm">Enter the Electric Newspaper Archive &rarr;</A>
+    <A HREF="archive/index.htm" ONCLICK="return openNetscape()">Enter the Electric Newspaper Archive &rarr;</A>
   </DIV>
 
 </DIV><!-- /page -->
