@@ -89,7 +89,7 @@ The archive was preserved on Internode's Unix server as a tar file after the pap
 
 **The problem:** The tar extraction had truncated all filenames to eight characters — a Unix filesystem artefact — breaking every image reference in all 711 HTML articles. Additionally, many images were referenced via absolute URLs pointing to the defunct `www.electric.on.net` domain.
 
-**What was recovered:** Systematic analysis mapped 92% of broken image references back to their original files. All 711 articles, 524 story photographs, all navigation button GIFs, all section header GIFs, all advertisement graphics, and all contributor portrait photos are intact. The remaining 8% of broken references (around 240 image references across 35 unique files) point to story-specific photo directories that were not captured in the tar archive and are genuinely lost.
+**What was recovered:** Systematic analysis mapped all but 2 broken image references back to their original files. All 711 articles, story photographs, navigation button GIFs, section header GIFs, advertisement graphics, and contributor portrait photos are intact. Of 18,000+ image references in the archive, 14,653 resolve correctly, 144 are external dead-ad URLs, and just 2 files (`news/logosa4.jpg` and `news/newlogosmall1.gif`) are genuinely absent from the original tar archive.
 
 **Changes made to the original HTML:**
 - Image paths corrected throughout (broken → relative)
