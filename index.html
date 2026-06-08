@@ -1,254 +1,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<TITLE>The Electric Newspaper — Archive &amp; History</TITLE>
+<TITLE>The Electric Newspaper &mdash; Archive &amp; History</TITLE>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
-<STYLE>
-/* =====================================================
-   THE ELECTRIC NEWSPAPER — ARCHIVE ENTRANCE PAGE
-   Restored 2024 from original Internode Unix server tar file
-   ===================================================== */
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 16px;
-  line-height: 1.6;
-  background: #f5f0e8;
-  color: #1a1a1a;
-}
-
-/* --- PAGE WRAPPER --- */
-.page {
-  max-width: 900px;
-  margin: 0 auto;
-  background: #ffffff;
-  border-left: 1px solid #c8bfaa;
-  border-right: 1px solid #c8bfaa;
-  padding-bottom: 60px;
-}
-
-/* --- MASTHEAD --- */
-.masthead {
-  text-align: center;
-  padding: 28px 20px 16px;
-  border-bottom: 4px double #1a1a1a;
-}
-.masthead img {
-  max-width: 491px;
-  width: 100%;
-}
-.masthead-rule {
-  border: none;
-  border-top: 1px solid #1a1a1a;
-  margin: 10px auto 6px;
-  width: 80%;
-}
-.masthead-dateline {
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #555;
-  margin-bottom: 4px;
-}
-.masthead-tagline {
-  font-size: 13px;
-  font-style: italic;
-  color: #333;
-}
-
-/* --- ENTER BUTTON --- */
-.enter-bar {
-  text-align: center;
-  background: #1a1a1a;
-  padding: 12px;
-}
-.enter-bar a {
-  color: #f5f0e8;
-  font-size: 13px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-family: "Times New Roman", serif;
-  cursor: pointer;
-}
-.enter-bar a:hover { text-decoration: underline; }
-
-/* --- COLUMN LAYOUT --- */
-.columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0;
-  border-bottom: 2px solid #1a1a1a;
-}
-.col {
-  padding: 20px 18px;
-  border-right: 1px solid #c8bfaa;
-}
-.col:last-child { border-right: none; }
-
-/* --- FULL-WIDTH SECTIONS --- */
-.full {
-  padding: 22px 28px;
-  border-bottom: 1px solid #c8bfaa;
-}
-.full:last-child { border-bottom: none; }
-
-/* --- TYPOGRAPHY --- */
-h2 {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  border-bottom: 2px solid #1a1a1a;
-  padding-bottom: 3px;
-  margin-bottom: 12px;
-  font-family: "Times New Roman", serif;
-}
-h3 {
-  font-size: 20px;
-  line-height: 1.25;
-  margin-bottom: 8px;
-  font-style: italic;
-}
-h4 {
-  font-size: 14px;
-  font-weight: bold;
-  margin: 14px 0 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 11px;
-}
-p { margin-bottom: 10px; font-size: 15px; }
-p:last-child { margin-bottom: 0; }
-a { color: #00008b; }
-a:hover { color: #8b0000; }
-
-/* --- PULL QUOTE --- */
-.pullquote {
-  border-left: 4px solid #1a1a1a;
-  padding: 8px 14px;
-  margin: 14px 0;
-  font-style: italic;
-  font-size: 15px;
-  color: #333;
-}
-
-/* --- TIMELINE --- */
-.timeline { list-style: none; margin: 0; padding: 0; }
-.timeline li {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 8px;
-  padding: 7px 0;
-  border-bottom: 1px dotted #c8bfaa;
-  font-size: 14px;
-  line-height: 1.45;
-}
-.timeline li:last-child { border-bottom: none; }
-.tl-date {
-  font-weight: bold;
-  font-size: 12px;
-  letter-spacing: 0.05em;
-  color: #555;
-  padding-top: 1px;
-}
-
-/* --- PEOPLE GRID --- */
-.people { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.person { font-size: 14px; }
-.person strong { display: block; margin-bottom: 2px; font-size: 14px; }
-.person em { font-size: 12px; color: #555; display: block; margin-bottom: 3px; }
-
-/* --- STATS ROW --- */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  text-align: center;
-  border-top: 2px solid #1a1a1a;
-  border-bottom: 2px solid #1a1a1a;
-  margin: 0;
-}
-.stat {
-  padding: 14px 8px;
-  border-right: 1px solid #c8bfaa;
-}
-.stat:last-child { border-right: none; }
-.stat .n {
-  font-size: 28px;
-  font-weight: bold;
-  display: block;
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.stat .l {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #666;
-}
-
-/* --- SECTION LINKS --- */
-.section-links {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  padding: 18px 28px;
-  background: #f5f0e8;
-  border-bottom: 2px solid #1a1a1a;
-}
-.section-link {
-  text-align: center;
-  border: 1px solid #c8bfaa;
-  background: #fff;
-  padding: 10px 6px;
-}
-.section-link a {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  font-weight: bold;
-  color: #1a1a1a;
-}
-.section-link a:hover { color: #8b0000; }
-.section-link .art-count {
-  display: block;
-  font-size: 10px;
-  color: #888;
-  margin-top: 2px;
-  letter-spacing: 0.05em;
-}
-
-/* --- FOOTER --- */
-.footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 11px;
-  color: #777;
-  border-top: 2px double #1a1a1a;
-  margin-top: 20px;
-}
-.footer a { color: #777; }
-
-/* --- SECTION RULE --- */
-.section-rule {
-  border: none;
-  border-top: 1px solid #c8bfaa;
-  margin: 14px 0;
-}
-
-/* --- RESTORATION NOTE --- */
-.restoration-note {
-  background: #f9f7f2;
-  border: 1px solid #c8bfaa;
-  padding: 10px 14px;
-  font-size: 12px;
-  color: #666;
-  margin-top: 14px;
-  line-height: 1.5;
-}
-</STYLE>
+<LINK REL="stylesheet" HREF="site.css">
 </HEAD>
 <BODY>
 <DIV CLASS="page">
@@ -259,6 +14,20 @@ a:hover { color: #8b0000; }
     <HR CLASS="masthead-rule">
     <DIV CLASS="masthead-dateline">Adelaide, South Australia &nbsp;&middot;&nbsp; February &ndash; July 1998</DIV>
     <DIV CLASS="masthead-tagline">Australia's first independent online daily newspaper</DIV>
+  </DIV>
+
+  <!-- SITE NAVIGATION -->
+  <NAV CLASS="site-nav">
+    <A HREF="index.html" CLASS="active">Home</A>
+    <A HREF="about.html">About</A>
+    <A HREF="history.html">History</A>
+    <A HREF="restoration.html">Restoration</A>
+    <A HREF="articles.html">Browse</A>
+  </NAV>
+
+  <!-- INTRO SUMMARY -->
+  <DIV CLASS="intro-summary">
+    <P><STRONG>The Electric Newspaper</STRONG> was Adelaide's first independent online daily newspaper, published from February to July 1998. Founded by the Virtual Artists web studio on Rundle Street and hosted on Internode's Adelaide server, it ran news, essays, arts, film, books, food, sport, and letters &mdash; 711 articles across seven months, written by working journalists and edited to professional standard. No print edition was ever produced. This site is a complete archive, restored in 2024 from the original Unix server tar file.</P>
   </DIV>
 
   <!-- ENTER ARCHIVE -->
@@ -289,7 +58,7 @@ a:hover { color: #8b0000; }
     working Back and Forward buttons, a location bar showing the original
     <CODE>http://www.electric.on.net/</CODE> address, an animated N logo, and a status bar.
     If your browser blocks the pop-up, allow it when prompted &mdash; or use the section
-    links further down this page to browse directly.
+    links below to browse directly.
   </DIV>
 
   <!-- STATS -->
@@ -301,268 +70,23 @@ a:hover { color: #8b0000; }
     <DIV CLASS="stat"><SPAN CLASS="n">1998</SPAN><SPAN CLASS="l">Adelaide SA</SPAN></DIV>
   </DIV>
 
-  <!-- THREE COLUMN INTRO -->
-  <DIV CLASS="columns">
-
-    <DIV CLASS="col">
-      <H2>What It Was</H2>
-      <P>The Electric Newspaper was a daily online newspaper published
-      in Adelaide, South Australia from February to July 1998.
-      It was among the first independent, journalist-led online newspapers
-      in Australia &mdash; published entirely on the web, with no print
-      edition, at a moment when most Australians were still discovering
-      the internet for the first time.</P>
-      <P>The paper ran news, essays, arts, film and book reviews, food,
-      sport, holidays, and a letters page. At its peak it was publishing
-      multiple stories a day, six days a week, written by working
-      journalists and edited to professional standard.</P>
-    </DIV>
-
-    <DIV CLASS="col">
-      <H2>Where It Came From</H2>
-      <P>The paper grew out of the web design studio
-      <STRONG>Virtual Artists</STRONG> on Rundle Street, Adelaide
-      &mdash; one of the city's earliest commercial web agencies.
-      The team already had the server, the skills, and the contacts
-      in Adelaide's journalism community. The idea was to put them
-      together and publish every day.</P>
-      <P>Virtual Artists had built a reputation for pushing what the web
-      could do. The idea of a daily online newspaper felt like the
-      logical next experiment: journalism at the speed of the web,
-      unconstrained by print deadlines or proprietors.</P>
-    </DIV>
-
-    <DIV CLASS="col">
-      <H2>Why It Matters</H2>
-      <P>In 1998, Australian newspaper websites were mirrors of their
-      print parents: slow to update, conservative in design, built by
-      IT departments not journalists. The Electric Newspaper was
-      something different &mdash; born digital, Adelaide-first, and
-      written by people who cared deeply about South Australian politics,
-      culture, and daily life.</P>
-      <P>It also captured, in real time, one of the most turbulent
-      periods in recent SA political history: the Olsen government's
-      surprise ETSA privatisation, the Ingerson parliamentary scandal,
-      and the rise of a new generation of independent MLCs including
-      Nick Xenophon.</P>
-    </DIV>
-
-  </DIV><!-- /columns -->
-
-  <!-- ORIGIN STORY -->
-  <DIV CLASS="full">
-    <H2>Origin &amp; Context</H2>
-    <H3>A newspaper born on Rundle Street</H3>
-
-    <P>Virtual Artists was founded in Adelaide in the mid-1990s and quickly became one of South Australia's leading web design studios, working with corporate clients across the country and producing some of the most technically ambitious websites in Australia at the time. The Electric Newspaper was served from a Unix server at Internode &mdash; Adelaide's own ISP, and one of the country's most progressive early internet providers.</P>
-
-    <P>The internet reached Australian homes at scale between 1994 and 1997. Adelaide was served by two of the country's most progressive early ISPs: <STRONG>Internode</STRONG>, founded in 1991 by Simon Hackett and Robyn Taylor in Adelaide, which began offering commercial internet services in 1995; and <STRONG>Cobweb Internet Services</STRONG>. Both became sponsors and infrastructure partners of The Electric Newspaper, their logos appearing at the foot of every page.</P>
-
-    <P>The paper launched in early February 1998. Within weeks it had established a rhythm: news from the SA Parliament and the courts in the morning, essays and opinion from politicians and academics in the afternoon, reviews of Adelaide's arts, restaurants, and films throughout the week. The server address was <CODE>www.electric.on.net</CODE>, hosted on Internode's network.</P>
-  </DIV>
-
-  <!-- TIMELINE -->
-  <DIV CLASS="full" STYLE="background: #f9f7f2;">
-    <H2>Timeline</H2>
-    <UL CLASS="timeline">
-      <LI>
-        <SPAN CLASS="tl-date">1991&ndash;95</SPAN>
-        <SPAN>Internode founded in Adelaide (1991) by Simon Hackett and Robyn Taylor; begins commercial ISP services in 1995. Adelaide develops one of Australia's most active early internet communities.</SPAN>
-      </LI>
-      <LI>
-        <SPAN CLASS="tl-date">Mid-1990s</SPAN>
-        <SPAN>Virtual Artists established on Rundle Street, Adelaide, as one of SA's first commercial web design studios. </SPAN>
-      </LI>
-      <LI>
-        <SPAN CLASS="tl-date">Mar 1997</SPAN>
-        <SPAN>SA state election. The Olsen Liberal government is re-elected, promising not to privatise ETSA, the state-owned electricity utility. Nick Xenophon elected to the Legislative Council as an independent on a No Pokies platform &mdash; the first independent elected to the LC in 60 years.</SPAN>
-      </LI>
-      <LI>
-        <SPAN CLASS="tl-date">17 Feb 1998</SPAN>
-        <SPAN>Premier John Olsen announces plans to privatise ETSA &mdash; reversing his election promise. The announcement triggers a political crisis that will dominate SA news for the next six months, and becomes the defining story of The Electric Newspaper's run.</SPAN>
-      </LI>
-      <LI>
-        <SPAN CLASS="tl-date">Feb 1998</SPAN>
-        <SPAN>The Electric Newspaper launches at <CODE>www.electric.on.net</CODE>. First articles cover the Adelaide Festival / Fringe season and breaking state political news. Adelaide's first online-only daily newspaper is live.</SPAN>
-      </LI>
-      <LI>
-        <SPAN CLASS="tl-date">Mar 1998</SPAN>
-        <SPAN>The Adelaide Festival and Fringe Festival are in full swing; the paper covers both intensively. Elaine Moore files multiple reviews per week. The paper's arts, food, and film sections find their regular contributors and rhythms.</SPAN>
-      </LI>
-      <LI>
-        <SPAN CLASS="tl-date">Apr&ndash;Jun 1998</SPAN>
-        <SPAN>The Ingerson affair: Deputy Premier Graham Ingerson is alleged to have misled parliament over a phone call about a racing authority appointment. The Speaker rules a prima facie case exists; a privileges committee &mdash; the first in SA parliamentary history &mdash; is convened. Hendrik Gout files 36+ articles on the unfolding crisis.</SPAN>
-      </LI>
-      <LI>
-        <SPAN CLASS="tl-date">Jun 1998</SPAN>
-        <SPAN>The Adelaide Rams NRL team, mid-season, relocates from Adelaide Oval to Hindmarsh Stadium after a financial dispute with the SACA. Attendance collapses. Sport editor Phil Owens (also writing motorsport as &ldquo;Piston Stoned&rdquo;) chronicles their decline.</SPAN>
-      </LI>
-      <LI>
-        <SPAN CLASS="tl-date">31 Jul 1998</SPAN>
-        <SPAN>The Electric Newspaper publishes its final edition. The paper is seven months old. The farewell note in the index reads: &ldquo;No time to say hello, see ya!&rdquo; The Internode Unix server is archived and sits dormant for 26 years.</SPAN>
-      </LI>
-      <LI>
-        <SPAN CLASS="tl-date">2024</SPAN>
-        <SPAN>The archive is rediscovered and restored. The archive is prepared for submission to PANDORA / TROVE by Ben Moretti</SPAN>
-      </LI>
-    </UL>
-  </DIV>
-
-  <!-- THE PEOPLE -->
-  <DIV CLASS="full">
-    <H2>The People</H2>
-    <H3>Journalists, artists, politicians, and web monkeys</H3>
-
-    <H4>Editorial</H4>
-    <DIV CLASS="people">
-      <DIV CLASS="person">
-        <STRONG>Hendrik Gout &mdash; Editor &amp; Chief Reporter</STRONG>
-        <EM>News, 36+ articles</EM>
-        Former executive producer of the ABC's 7.30 Report. Had covered the SA State Bank Royal Commission and SA politics. Ran his own media company by 1998. Author of the paper's most memorable headlines, including &ldquo;Olsen sticks by Ingo like doggydoo sticks to shoes.&rdquo;
+  <!-- TABLE OF CONTENTS -->
+  <DIV CLASS="toc">
+    <H2>Learn More</H2>
+    <DIV CLASS="toc-items">
+      <DIV CLASS="toc-item">
+        <A HREF="about.html">About the Electric Newspaper &rarr;</A>
+        <P>What it was, where it came from, and why it matters &mdash; including the story of Virtual Artists and Adelaide's early internet community.</P>
       </DIV>
-      <DIV CLASS="person">
-        <STRONG>Garry Quill &mdash; Canberra Correspondent</STRONG>
-        <EM>News, filed from Parliament House</EM>
-        Political reporter and commentator based at Parliament House, Canberra. Co-bylined multiple stories with Gout, providing the federal angle on SA stories.
+      <DIV CLASS="toc-item">
+        <A HREF="history.html">Origin &amp; Content &rarr;</A>
+        <P>A full timeline, profiles of the journalists, politicians, and reviewers who contributed, and the stories that defined the paper's run.</P>
       </DIV>
-      <DIV CLASS="person">
-        <STRONG>Krista Eleftheriou &mdash; Reporter</STRONG>
-        <EM>News; second-year journalism student, UniSA</EM>
-        Hailed from Ceduna. Filed tourism, transport, and gun law stories. The paper noted her career potential: &ldquo;You read her work here first.&rdquo;
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>Chris Warren &mdash; Reporter</STRONG>
-        <EM>News; Seven National News Adelaide</EM>
-        Experienced television journalist specialising in environmental issues.
+      <DIV CLASS="toc-item">
+        <A HREF="restoration.html">About This Archive &rarr;</A>
+        <P>How 711 articles were recovered from a dormant 1998 Unix server tar file and restored to working order in 2024.</P>
       </DIV>
     </DIV>
-
-    <HR CLASS="section-rule">
-    <H4>Essays &amp; Opinion</H4>
-    <DIV CLASS="people">
-      <DIV CLASS="person">
-        <STRONG>Legh Davis</STRONG>
-        <EM>Essays, 19 articles &mdash; most prolific contributor</EM>
-        SA policy analyst. Wrote with Labour sympathies but was sharp enough to critique his own side. Covered the State Budget, ETSA, and the internal machinations of the SA Labor Party.
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>Sandra Kanck MLC</STRONG>
-        <EM>Essays, 16 articles &mdash; SA Democrats</EM>
-        Sitting Legislative Councillor. Wrote on voluntary euthanasia, the Riverlink project, poker machines, and the environment. The paper's most frequent political contributor.
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>John Spoehr</STRONG>
-        <EM>Essays, 7 articles &mdash; economic policy</EM>
-        SA policy analyst; provided considered economic and social commentary on the privatisation debate.
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>John Rau LLB</STRONG>
-        <EM>Essays, 5 articles &mdash; SA Labor</EM>
-        Labour lawyer and politician. Later became SA Attorney-General and Deputy Premier. Also listed as the paper's in-house legal counsel: &ldquo;Keeping us out of jail.&rdquo;
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>Nick Xenophon MLC</STRONG>
-        <EM>Essays &mdash; No Pokies independent</EM>
-        The first independent elected to the SA Legislative Council in 60 years (1997). Later Federal Senator. Contributor and frequent subject of news coverage.
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>Patrick Conlon MHA</STRONG>
-        <EM>Essays &mdash; SA Labor</EM>
-        SA Labor frontbencher; also served on the parliamentary privileges committee investigating Graham Ingerson.
-      </DIV>
-    </DIV>
-
-    <HR CLASS="section-rule">
-    <H4>Arts, Reviews &amp; Features</H4>
-    <DIV CLASS="people">
-      <DIV CLASS="person">
-        <STRONG>Phil Owens / &ldquo;Piston Stoned&rdquo;</STRONG>
-        <EM>Sport &mdash; NRL and motorsport</EM>
-        Dr Phillip Clyde Owens. Began his career selling telegraphs at Lang Park. Covered the Adelaide Rams' ill-fated 1998 season under his own name; filed F1 and 500cc motorcycle coverage as &ldquo;Piston Stoned.&rdquo;
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>David Bradley</STRONG>
-        <EM>Films, 45 articles</EM>
-        Sole film reviewer. &ldquo;Insightful, sometimes caustic, always perceptive, and regularly wry.&rdquo;
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>Adrienne Eccles</STRONG>
-        <EM>Food &amp; Drink</EM>
-        &ldquo;A nose for a good story, a fine wine, and particularly for stories about fine South Australian wines.&rdquo;
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>Dianne Gall</STRONG>
-        <EM>Arts, 6 articles</EM>
-        Visual arts reviewer and practitioner. Covered Adelaide galleries, concerts, and exhibitions.
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>Elaine Moore</STRONG>
-        <EM>Fringe, 3+ articles</EM>
-        Background in arts and drama; shot and edited news and current affairs. Covered the 1998 Adelaide Fringe Festival intensively.
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>George Aldridge</STRONG>
-        <EM>Holidays &amp; Cartoonist</EM>
-        &ldquo;One of Australia's finest cartoonists.&rdquo; Also the paper's &ldquo;uniquely own foreign correspondent,&rdquo; filing postcards from Ireland.
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>Denise Wels</STRONG>
-        <EM>Books, 40 articles</EM>
-        Former pharmacist and prolific book reviewer. &ldquo;Likes mysteries, good coffee, and red down booties.&rdquo;
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>Ray Thomas</STRONG>
-        <EM>Arts &mdash; classical music</EM>
-        Helped pioneer television news in SA. Former chief-of-staff in television news in Adelaide and Melbourne.
-      </DIV>
-    </DIV>
-
-    <HR CLASS="section-rule">
-    <H4>Production &amp; Design</H4>
-    <DIV CLASS="people">
-      <DIV CLASS="person">
-        <STRONG>Andy Petrucevics &ldquo;AndyPC&rdquo;</STRONG>
-        <EM>Design &amp; Illustrations</EM>
-        Editor of Konstrukto ezine, creator of the Businessman Proposal Sculpture in Rundle Mall, ABC worker, performance artist, painter, &ldquo;manufacturer of natty little dada style pop tunes.&rdquo; Designed the Electric Newspaper's visual identity.
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>Chris Joyner</STRONG>
-        <EM>Web production</EM>
-        &ldquo;Flies the fickle finger of fate over more programs than a normal human being can count.&rdquo; Hand-coded every page in HTML. Frequently found at the Adelaide Oval or the Rob Roy Hotel.
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>Ben Moretti</STRONG>
-        <EM>Web production</EM>
-        &ldquo;Disguises himself in a crowd by dressing conservatively, enjoys French Polishing and Coopers Ale, and rides a single-tracked vehicle.&rdquo;
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>Tatiania Liemareff</STRONG>
-        <EM>Editorial assistant</EM>
-        Graduate in visual arts, UniSA. Freelance visual arts consultant. Described by the team as completing &ldquo;a practical degree in Digital Camera Mysteries.&rdquo;
-      </DIV>
-      <DIV CLASS="person">
-        <STRONG>Victoria White</STRONG>
-        <EM>Operations</EM>
-        &ldquo;What a keel is to a ship, what the Tigris is to the Euphrates, what Abbott is to Costello. Computer-wise, Net-wise, and G&amp;T-wise.&rdquo;
-      </DIV>
-    </DIV>
-  </DIV>
-
-  <!-- THE STORIES -->
-  <DIV CLASS="full" STYLE="background: #f9f7f2;">
-    <H2>The Stories That Defined It</H2>
-
-    <H4>The ETSA Saga &mdash; 84 articles</H4>
-    <P>No story ran longer or deeper than the Olsen government's decision to privatise ETSA &mdash; the Electricity Trust of South Australia. Announced in February 1998, it broke a direct election promise made the previous year. Opponents argued the sale would cost the government more in lost dividends than it would raise. The scandal ran through the paper's entire lifespan: 54 news articles and 30 essays mention ETSA by name. Premier Olsen appears in 83 news articles &mdash; nearly one in three.</P>
-
-    <H4>The Ingerson Affair &mdash; 35 articles</H4>
-    <P>Deputy Premier Graham Ingerson was alleged to have telephoned the chairman of the SA Thoroughbred Racing Authority to influence the appointment of a chief executive, then denied doing so before an estimates committee. The Speaker ruled a prima facie case of misleading parliament existed. The resulting privileges committee was the first in SA parliamentary history &mdash; a body with the powers of a royal commission. Gout chronicled it in granular detail, including unnamed Liberal ministers openly wondering if Ingerson would survive.</P>
-
-    <H4>The Adelaide Fringe 1998</H4>
-    <P>The paper launched almost simultaneously with the 1998 Adelaide Festival and Fringe season, and covered both intensively through March. Elaine Moore's Fringe reviews capture a moment when the Festival was still finding its footing as the mass-market event it would later become.</P>
-
-    <H4>The Rams' Last Season</H4>
-    <P>The Adelaide Rams' 1998 NRL season &mdash; their second and last &mdash; became a slow-motion tragedy Phil Owens recorded week by week. The team lost nine of their first ten games, the coach was sacked, they abandoned Adelaide Oval for Hindmarsh Stadium, and attendance fell by more than half. The club folded at season's end, remaining the only South Australian team ever to play top-flight rugby league.</P>
   </DIV>
 
   <!-- BROWSE THE ARCHIVE -->
@@ -621,24 +145,15 @@ a:hover { color: #8b0000; }
     </DIV>
   </DIV>
 
-  <!-- RESTORATION NOTE -->
-  <DIV CLASS="full">
-    <H2>About This Archive</H2>
-    <P>This archive was restored in 2024 from the original Unix tar file extracted from the Solaris server that hosted <CODE>www.electric.on.net</CODE>. The tar process had truncated all filenames to eight characters, breaking every image reference in the 711 HTML articles. The restoration process mapped 92% of broken references back to their original files through systematic pattern matching, rewrote 269 absolute URLs to relative paths, fixed cross-browser JavaScript compatibility in 923 files, and built section index pages for every content area.</P>
-    <P>The article text and body HTML is entirely original and unmodified. The only changes to article files are: image path corrections, navigation link fixes, and the disabling (with preservation in comments) of a Netscape 3-era rollover button script.</P>
-    <DIV CLASS="restoration-note">
-      <STRONG>Technical note:</STRONG> Original HTML hand-coded by Chris Joyner and Ben Moretti, 1998.
-      Rollover button JavaScript by Dave Sag and Mark King, Virtual Artists Pty Ltd, July 1997.
-      Hosted on Internode (<A HREF="http://www.on.net">on.net</A>) and
-      Cobweb Internet Services. Internet service provider logos retained at the foot of
-      each article page as they appeared in 1998. Archive restored and prepared for
-      submission to PANDORA / TROVE, National Library of Australia, 2024.
-    </DIV>
-  </DIV>
-
   <!-- FOOTER -->
   <DIV CLASS="footer">
     <A HREF="archive/INDEX.HTM" ONCLICK="return openNetscape()">Enter the Electric Newspaper Archive &rarr;</A>
+    &nbsp;&middot;&nbsp;
+    <A HREF="about.html">About</A>
+    &nbsp;&middot;&nbsp;
+    <A HREF="history.html">History</A>
+    &nbsp;&middot;&nbsp;
+    <A HREF="restoration.html">Restoration</A>
   </DIV>
 
 </DIV><!-- /page -->
