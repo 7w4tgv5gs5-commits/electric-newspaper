@@ -19,9 +19,13 @@ GitHub Pages live site is at the URL in `README.md`.
 
 ## File Structure
 
-- **`index.html`** — Entrance page: history, timeline, people, and section links
-- **`netscape.html`** — Simulated Netscape Navigator 4 browser chrome; loads `archive/INDEX.HTM` in an iframe
+- **`index.html`** — Entrance page: brief intro, Enter the Archive button, stats, learn-more ToC, and section links
+- **`about.html`** — About the Electric Newspaper: what it was, where it came from, why it matters, origin & context
+- **`history.html`** — Origin & Content: timeline, the people (full contributor profiles), and the stories that defined the paper
+- **`restoration.html`** — About This Archive: how the 1998 Unix server tar file was recovered and restored
 - **`articles.html`** — Searchable/sortable article index; all article metadata is embedded as a JavaScript array with client-side filtering (no server required)
+- **`netscape.html`** — Simulated Netscape Navigator 4 browser chrome; loads `archive/INDEX.HTM` in an iframe
+- **`site.css`** — Shared stylesheet used by all site pages (index, about, history, restoration, articles)
 - **`archive/`** — The complete 1998 newspaper content (711 HTML articles + images)
 
 ## Architecture Notes
