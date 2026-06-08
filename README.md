@@ -28,8 +28,14 @@ The paper's coverage was almost entirely South Australian in focus. Its seven-mo
 
 ```
 /
-├── index.html          Entrance page — history, timeline, people, archive links
-├── wikipedia.html      Draft Wikipedia article on The Electric Newspaper
+├── index.html          Entrance page — intro, Enter the Archive, section links
+├── about.html          About the Electric Newspaper — what it was, origin & context
+├── history.html        Origin & Content — timeline, the people, defining stories
+├── restoration.html    About This Archive — how the 1998 server archive was recovered
+├── articles.html       Searchable and sortable index of all 711 articles
+├── netscape.html       Simulated Netscape Navigator 4 browser (800×600)
+├── site.css            Shared styles for all site pages
+├── wikipedia.md        Draft Wikipedia article on The Electric Newspaper
 ├── README.md           This file
 └── archive/            The complete restored archive
     ├── index.htm       Original front page
